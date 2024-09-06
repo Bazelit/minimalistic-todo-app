@@ -1,20 +1,19 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import TodoDrawer from "./components/Drawer";
 import Greeting from "./components/Greeting";
-import { useGetTodosQuery } from "./redux/todosApi";
-import { useUpdateTodoMutation } from "./redux/todosApi";
+import { useGetTodosQuery, useUpdateTodoMutation } from "./redux/todosApi";
 import Loading from "./components/Loading";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Toaster } from "@/components/ui/toaster";
 
-interface Todo {
+type Todo = {
   id: number | string;
   name: string;
   completed: boolean;
-}
+};
 
 const App = () => {
-  const { data, error, isLoading } = useGetTodosQuery({});
+  const { data, error, isLoading } = useGetTodosQuery();
   const [updateTodo] = useUpdateTodoMutation();
 
   if (error) {
@@ -35,13 +34,16 @@ const App = () => {
               <p>Нажмите на "+", чтобы добавить</p>
             </div>
           ) : (
-            data.map((todo: Todo) => (
+            data?.map((todo: Todo) => (
               <div key={todo.id} className="todo">
                 <Checkbox
                   className="checkbox"
                   checked={todo.completed}
                   onChange={() => {
-                    updateTodo({ ...todo, completed: !todo.completed });
+                    updateTodo({
+                      id: todo.id,
+                      completed: !todo.completed,
+                    });
                   }}
                 />
                 <span>{todo.name}</span>
