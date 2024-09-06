@@ -39,12 +39,6 @@ const App = () => {
                 <Checkbox
                   className="checkbox"
                   checked={todo.completed}
-                  onChange={() => {
-                    updateTodo({
-                      id: todo.id,
-                      completed: !todo.completed,
-                    });
-                  }}
                 />
                 <span>{todo.name}</span>
               </div>
