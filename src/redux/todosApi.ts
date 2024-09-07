@@ -1,17 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { Todo } from "@/types/todoType";
 
-interface Todo {
-  id: number;
-  name: string;
-  completed: boolean;
-}
 type TodosResponse = Todo[];
 
 export const todosApi = createApi({
   reducerPath: "todosApi",
   tagTypes: ["Todos"],
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://66db64cff47a05d55be7e6bb.mockapi.io/",
+    baseUrl: "/api",
   }),
   endpoints: (build) => ({
     getTodos: build.query<TodosResponse, void>({
@@ -40,8 +36,19 @@ export const todosApi = createApi({
       }),
       invalidatesTags: [{ type: "Todos", id: "LIST" }],
     }),
+    deleteAllTodos: build.mutation<void, void>({
+      query: () => ({
+        url: "todos",
+        method: "DELETE",
+      }),
+      invalidatesTags: [{ type: "Todos", id: "LIST" }],
+    }),
   }),
 });
 
-export const { useGetTodosQuery, useAddTodoMutation, useUpdateTodoMutation } =
-  todosApi;
+export const {
+  useGetTodosQuery,
+  useAddTodoMutation,
+  useUpdateTodoMutation,
+  useDeleteAllTodosMutation,
+} = todosApi;
