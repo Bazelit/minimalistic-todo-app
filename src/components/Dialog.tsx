@@ -9,8 +9,8 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import Icon from "@mdi/react";
-import { mdiTrashCan } from "@mdi/js";
+import { Button } from "@/components/ui/button";
+import { TrashIcon } from "@radix-ui/react-icons";
 import { useDeleteAllTodosMutation } from "@/redux/todosApi";
 
 const Dialog = () => {
@@ -27,17 +27,16 @@ const Dialog = () => {
   return (
     <AlertDialog>
       <AlertDialogTrigger>
-        <div className="clearBtn">
-          <Icon className="mr-5" path={mdiTrashCan} size={1} />
-        </div>
+        <Button style={{ borderRadius: "50%" }} variant="outline" size="icon">
+          <TrashIcon className="h-5 w-5" />
+        </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Очистить все заметки?</AlertDialogTitle>
           <AlertDialogDescription>
             Вы уверены, что хотите удалить все заметки? Это действие необратимо,
-            и все ваши заметки будут удалены навсегда. Пожалуйста, подтвердите
-            ваше решение.
+            и все ваши заметки будут удалены навсегда.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

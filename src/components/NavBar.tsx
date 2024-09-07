@@ -1,21 +1,22 @@
 import Icon from "@mdi/react";
 import { mdiPen } from "@mdi/js";
 import { mdiCog } from "@mdi/js";
+import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
   return (
     <footer className="footer">
       <div className="link">
-        <div className="navLink active">
+        <NavLink to="" className="navLink">
           <Icon path={mdiPen} size={1} />
-        </div>
-        <span>Home</span>
+        </NavLink>
+        <span>Заметки</span>
       </div>
       <div className="link">
-        <div className="navLink">
+        <NavLink to="settings" className="navLink">
           <Icon path={mdiCog} size={1} />
-        </div>
-        <span>Settings</span>
+        </NavLink>
+        <span>Настройки</span>
       </div>
     </footer>
   );
