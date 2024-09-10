@@ -111,11 +111,8 @@
 
 .emptyTodos {
   position: relative;
-  top: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  top: 200px;
+  text-align: center;
 }
 
 .emptyTodos h2 {
@@ -158,9 +155,6 @@
   width: 56px;
   height: 56px;
   border-radius: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 24px;
   position: fixed;
   bottom: 110px;
@@ -251,7 +245,7 @@
 }
 
 .todoSettings {
-  padding: 15px 15px;
+  padding: 15px 26px;
   font-size: 26px;
   font-weight: 700;
 }
