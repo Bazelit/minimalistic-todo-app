@@ -2,11 +2,18 @@ import Loading from "@/components/Loading";
 import { Todo } from "@/types/todoType";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Progress } from "@/components/ui/progress";
-import { useGetTodosQuery, useUpdateTodoMutation } from "@/redux/todosApi";
+import {
+  useDeleteTodoMutation,
+  useGetTodosQuery,
+  useUpdateTodoMutation,
+} from "@/redux/todosApi";
 import Dialog from "./Dialog";
+import { Button } from "./ui/button";
+import { Cross2Icon } from "@radix-ui/react-icons";
 
 const Todos = () => {
   const { data, error, isLoading } = useGetTodosQuery();
+  const [deleteTodo] = useDeleteTodoMutation();
   const [updateTodo] = useUpdateTodoMutation();
 
   const totalTodos = data?.length || 0;
@@ -39,15 +46,28 @@ const Todos = () => {
         <>
           <Progress className="mb-5" value={progressValue} />
           <div className="mainTodos">
-            <div>
+            <div className="w-4/5">
               {data?.map((todo: Todo) => (
-                <div key={todo.id} className="todo">
-                  <Checkbox
-                    className={`checkbox ${todo.completed && "active"}`}
-                    checked={todo.completed}
-                    onCheckedChange={() => handleCheckboxChange(todo)}
-                  />
-                  <span>{todo.name}</span>
+                <div
+                  key={todo.id}
+                  className="todo flex items-center justify-between"
+                >
+                  <div>
+                    <Checkbox
+                      className={`checkbox ${todo.completed && "active"}`}
+                      checked={todo.completed}
+                      onCheckedChange={() => handleCheckboxChange(todo)}
+                    />
+                    <span>{todo.name}</span>
+                  </div>
+                  <Button
+                    className="rounded-full"
+                    variant={"outline"}
+                    size={"icon"}
+                    onClick={() => deleteTodo(todo.id)}
+                  >
+                    <Cross2Icon className="h-5 w-5" />
+                  </Button>
                 </div>
               ))}
             </div>

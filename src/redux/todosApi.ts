@@ -7,7 +7,7 @@ export const todosApi = createApi({
   reducerPath: "todosApi",
   tagTypes: ["Todos"],
   baseQuery: fetchBaseQuery({
-    baseUrl: "/api",
+    baseUrl: "https://66db64cff47a05d55be7e6bb.mockapi.io/",
   }),
   endpoints: (build) => ({
     getTodos: build.query<TodosResponse, void>({
@@ -20,7 +20,7 @@ export const todosApi = createApi({
             ]
           : [{ type: "Todos", id: "LIST" }],
     }),
-    addTodo: build.mutation<Todo, Partial<Todo>>({
+    addTodo: build.mutation({
       query: (body) => ({
         url: "todos",
         method: "POST",
@@ -28,17 +28,17 @@ export const todosApi = createApi({
       }),
       invalidatesTags: [{ type: "Todos", id: "LIST" }],
     }),
-    updateTodo: build.mutation<Todo, Partial<Todo>>({
-      query: ({ id, ...patch }) => ({
+    updateTodo: build.mutation({
+      query: ({ id, ...updatedData }) => ({
         url: `todos/${id}`,
-        method: "PATCH",
-        body: patch,
+        method: "PUT",
+        body: updatedData,
       }),
       invalidatesTags: [{ type: "Todos", id: "LIST" }],
     }),
-    deleteAllTodos: build.mutation<void, void>({
-      query: () => ({
-        url: "todos",
+    deleteTodo: build.mutation({
+      query: (id) => ({
+        url: `todos/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: [{ type: "Todos", id: "LIST" }],
@@ -50,5 +50,5 @@ export const {
   useGetTodosQuery,
   useAddTodoMutation,
   useUpdateTodoMutation,
-  useDeleteAllTodosMutation,
+  useDeleteTodoMutation,
 } = todosApi;

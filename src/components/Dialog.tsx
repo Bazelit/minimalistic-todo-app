@@ -11,23 +11,33 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { TrashIcon } from "@radix-ui/react-icons";
-import { useDeleteAllTodosMutation } from "@/redux/todosApi";
+import { useDeleteTodoMutation, useGetTodosQuery } from "@/redux/todosApi";
+import { useToast } from "@/hooks/use-toast";
 
 const Dialog = () => {
-  const [deleteAllTodos] = useDeleteAllTodosMutation();
+  const { data } = useGetTodosQuery();
+  const { toast } = useToast();
+  const [delteTodo] = useDeleteTodoMutation();
 
-  const handleClearAll = async () => {
-    try {
-      await deleteAllTodos();
-    } catch (error) {
-      console.error("Ошибка при очистке задач", error);
+  const handleDeleteAll = async () => {
+    if (data && data.length > 0) {
+      try {
+        for (const item of data) {
+          await delteTodo(item.id).unwrap();
+        }
+        return toast({
+          description: "Заметки очищены",
+        });
+      } catch (error) {
+        console.error("Ошибка при удалении элементов:", error);
+      }
     }
   };
 
   return (
     <AlertDialog>
       <AlertDialogTrigger>
-        <Button style={{ borderRadius: "50%" }} variant="outline" size="icon">
+        <Button className="rounded-full" variant="outline" size="icon">
           <TrashIcon className="h-5 w-5" />
         </Button>
       </AlertDialogTrigger>
@@ -41,7 +51,7 @@ const Dialog = () => {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Отмена</AlertDialogCancel>
-          <AlertDialogAction onClick={handleClearAll}>
+          <AlertDialogAction onClick={handleDeleteAll}>
             Подтвердить
           </AlertDialogAction>
         </AlertDialogFooter>
