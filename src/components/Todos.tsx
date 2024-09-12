@@ -46,17 +46,16 @@ const Todos = () => {
         <>
           <Progress className="mb-5" value={progressValue} />
           <div className="mainTodos">
-            <div className="w-4/5">
+            <div className="w-[85%]">
               {data?.map((todo: Todo) => (
                 <div
                   key={todo.id}
                   className="todo flex items-center justify-between"
                 >
-                  <div>
+                  <div onClick={() => handleCheckboxChange(todo)}>
                     <Checkbox
                       className={`checkbox ${todo.completed && "active"}`}
                       checked={todo.completed}
-                      onCheckedChange={() => handleCheckboxChange(todo)}
                     />
                     <span>{todo.name}</span>
                   </div>

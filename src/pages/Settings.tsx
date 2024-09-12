@@ -5,18 +5,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Switch } from "@/components/ui/switch";
+import { ModeToggle } from "@/components/mode-toggle";
 
 const Settings = () => {
   return (
     <div className="wrapper">
       <h1 className="todoSettings">⚙ Настройки</h1>
       <div className="settings">
-        <div className="flex justify-between items-center border-b-[1px] font-light p-5">
-          <span>Светлая тема</span>
-          <Switch />
+        <div className="flex  justify-between items-center border-b-[1px] font-light p-5">
+          <span>Изменить тему</span>
+          <ModeToggle />
         </div>
-        <div className="flex justify-between items-center border-b-[1px] font-light p-5">
+        <div className="flex justify-between items-center border-b-[1px] font-light p-5 border-none">
           <span>Язык</span>
           <Select>
             <SelectTrigger className="w-[130px]">

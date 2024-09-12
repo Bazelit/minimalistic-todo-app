@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
   return (
-    <footer className="footer">
+    <footer className="footer bg-background">
       <div className="link">
         <NavLink to="" className="navLink">
           <Icon path={mdiPen} size={1} />
