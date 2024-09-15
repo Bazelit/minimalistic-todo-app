@@ -1,7 +1,6 @@
 import Loading from "@/components/Loading";
 import { Todo } from "@/types/todoType";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Progress } from "@/components/ui/progress";
 import {
   useDeleteTodoMutation,
   useGetTodosQuery,
@@ -10,8 +9,11 @@ import {
 import Dialog from "./Dialog";
 import { Button } from "./ui/button";
 import { Cross2Icon } from "@radix-ui/react-icons";
+import { useTranslation } from "react-i18next";
+import TodoProgress from "./TodoProgress";
 
 const Todos = () => {
+  const { t } = useTranslation();
   const { data, error, isLoading } = useGetTodosQuery();
   const [deleteTodo] = useDeleteTodoMutation();
   const [updateTodo] = useUpdateTodoMutation();
@@ -25,12 +27,16 @@ const Todos = () => {
     try {
       await updateTodo({ ...todo, completed: !todo.completed });
     } catch (error) {
-      console.error("Ошибка при обновлении задачи", error);
+      console.error(t("Error when receiving tasks"), error);
     }
   };
 
   if (error) {
-    return <h2>😥 Ошибка при получении заметок</h2>;
+    return (
+      <div className="emptyTodos">
+        <h2>😥 {t("Error when receiving tasks")}</h2>
+      </div>
+    );
   }
 
   return (
@@ -44,9 +50,13 @@ const Todos = () => {
         </div>
       ) : (
         <>
-          <Progress className="mb-5" value={progressValue} />
+          <TodoProgress
+            progressValue={progressValue}
+            totalTodos={totalTodos}
+            completedTodos={completedTodos}
+          />
           <div className="mainTodos">
-            <div className="w-[85%]">
+            <div className="w-[100%]">
               {data?.map((todo: Todo) => (
                 <div
                   key={todo.id}
@@ -60,7 +70,7 @@ const Todos = () => {
                     <span>{todo.name}</span>
                   </div>
                   <Button
-                    className="rounded-full"
+                    className="rounded-full border-none"
                     variant={"outline"}
                     size={"icon"}
                     onClick={() => deleteTodo(todo.id)}
@@ -70,8 +80,8 @@ const Todos = () => {
                 </div>
               ))}
             </div>
-            <Dialog />
           </div>
+          <Dialog />
         </>
       )}
     </div>

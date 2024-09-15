@@ -15,10 +15,12 @@ import { mdiPlus } from "@mdi/js";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useAddTodoMutation } from "@/redux/todosApi";
+import { useTranslation } from "react-i18next";
 
 const TodoDrawer = () => {
   const [addTodo] = useAddTodoMutation();
   const [todoTitle, setTodoTitle] = useState<string>("");
+  const { t } = useTranslation();
   const { toast } = useToast();
 
   const handleAddTodo = async () => {
@@ -28,7 +30,7 @@ const TodoDrawer = () => {
     } else {
       return toast({
         variant: "destructive",
-        description: "Заметка не может быть пустой!",
+        description: `${t("The note cannot be empty!")}`,
       });
     }
   };
@@ -42,7 +44,7 @@ const TodoDrawer = () => {
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
-          <DrawerTitle>Вы хотите добавить заметку?</DrawerTitle>
+          <DrawerTitle>{t("Do you want to add a task?")}</DrawerTitle>
           <DrawerDescription>
             <Input
               value={todoTitle}
@@ -57,12 +59,12 @@ const TodoDrawer = () => {
               className="btn"
               onClick={handleAddTodo}
             >
-              Добавить
+              {t("Add")}
             </Button>
           </DrawerClose>
           <DrawerClose>
             <Button style={{ width: "100%" }} className="btn" variant="outline">
-              Отмена
+              {t("Cancel")}
             </Button>
           </DrawerClose>
         </DrawerFooter>

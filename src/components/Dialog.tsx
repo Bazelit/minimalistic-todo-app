@@ -9,12 +9,20 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 import { TrashIcon } from "@radix-ui/react-icons";
 import { useDeleteTodoMutation, useGetTodosQuery } from "@/redux/todosApi";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 const Dialog = () => {
+  const { t } = useTranslation();
   const { data } = useGetTodosQuery();
   const { toast } = useToast();
   const [delteTodo] = useDeleteTodoMutation();
@@ -26,33 +34,34 @@ const Dialog = () => {
           await delteTodo(item.id).unwrap();
         }
         return toast({
-          description: "Заметки очищены",
+          description: `${t("The tasks have been cleared")}`,
         });
       } catch (error) {
-        console.error("Ошибка при удалении элементов:", error);
+        console.error(`${t("Error deleting tasks:")}`, error);
       }
     }
   };
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger>
-        <Button className="rounded-full" variant="outline" size="icon">
-          <TrashIcon className="h-5 w-5" />
+      <AlertDialogTrigger className="w-full">
+        <Button className="rounded-full mt-10" variant="outline" size="default">
+          <TrashIcon className="h-5 w-5 mr-1" /> <span>{t("Clear all tasks")}</span>
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Очистить все заметки?</AlertDialogTitle>
+          <AlertDialogTitle>{t("Clear all tasks")}?</AlertDialogTitle>
           <AlertDialogDescription>
-            Вы уверены, что хотите удалить все заметки? Это действие необратимо,
-            и все ваши заметки будут удалены навсегда.
+            {t(
+              "Are you sure you want to delete all the notes? This action is irreversible, and all your notes will be deleted forever."
+            )}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Отмена</AlertDialogCancel>
+          <AlertDialogCancel>{t("Cancel")}</AlertDialogCancel>
           <AlertDialogAction onClick={handleDeleteAll}>
-            Подтвердить
+            {t("Confirm")}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

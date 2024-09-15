@@ -1,6 +1,9 @@
+import { useTranslation } from "react-i18next";
 import { TailSpin } from "react-loader-spinner";
 
 const Loading = () => {
+  const {t} = useTranslation()
+
   return (
     <div className="loading">
       <TailSpin
@@ -14,7 +17,7 @@ const Loading = () => {
         wrapperStyle={{}}
         wrapperClass="tailSpin"
       />
-      <span>Загрузка...</span>
+      <span>{t('Loading')}</span>
     </div>
   );
 };

@@ -1,19 +1,21 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 const Greeting = () => {
   const [timeOfDay, setTimeOfDay] = useState<string>("");
+  const { t } = useTranslation();
 
   useEffect(() => {
     const currentTime = new Date().getHours();
 
     if (currentTime >= 6 && currentTime < 12) {
-      setTimeOfDay("🌅 Доброе утро!");
+      setTimeOfDay(`🌅 ${t("Good morning!")}`);
     } else if (currentTime >= 12 && currentTime < 18) {
-      setTimeOfDay("☀️ Добрый день!");
+      setTimeOfDay(`☀️ ${t("Good afternoon!")}`);
     } else if (currentTime >= 18 && currentTime < 24) {
-      setTimeOfDay("🌙 Добрый вечер!");
+      setTimeOfDay(`🌙 ${t("Good evening!")}`);
     } else {
-      setTimeOfDay("🌃 Доброй ночи!");
+      setTimeOfDay(`🌃 ${t("Goodnight!")}`);
     }
   }, []);
 
