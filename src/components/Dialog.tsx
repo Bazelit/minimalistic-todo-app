@@ -9,12 +9,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 import { TrashIcon } from "@radix-ui/react-icons";
 import { useDeleteTodoMutation, useGetTodosQuery } from "@/redux/todosApi";
