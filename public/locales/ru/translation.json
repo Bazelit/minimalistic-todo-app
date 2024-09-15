@@ -24,5 +24,7 @@
   "Confirm": "Подтвердить",
   "Error when receiving tasks": "Ошибка при получении задач",
   "Progress": "Прогресс",
-  "LanguagePlaceholder": "Русский"
+  "LanguagePlaceholder": "Русский",
+  "You don't have any notes": "У вас нет заметок",
+  "Click on the '+' to add": "Нажмите на '+', чтобы добавить"
 }

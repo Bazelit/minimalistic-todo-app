@@ -24,5 +24,7 @@
   "Confirm": "Confirm",
   "Error when receiving tasks": "Error when receiving tasks",
   "Progress": "Progress",
-  "LanguagePlaceholder": "English"
+  "LanguagePlaceholder": "English",
+  "You don't have any notes": "You don't have any notes",
+  "Click on the '+' to add": "Click on the '+' to add"
 }

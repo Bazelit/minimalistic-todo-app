@@ -45,8 +45,8 @@ const Todos = () => {
         <Loading />
       ) : data && data.length === 0 ? (
         <div className="emptyTodos">
-          <h2>У вас нет заметок</h2>
-          <p>Нажмите на "+", чтобы добавить</p>
+          <h2>{t("You don't have any notes")}</h2>
+          <p>{t("Click on the '+' to add")}</p>
         </div>
       ) : (
         <>
