@@ -1,3 +1,26 @@
+<h1>Todo App</h1>
+
+<div align="center">
+	<img src="https://github.com/user-attachments/assets/c04dba06-f4b8-485f-b8d0-5c8ccea8eaef" />
+</div>
+
+---
+
+![Frame 2](https://github.com/user-attachments/assets/fd3febc5-2df8-44c4-800a-1246128a088d)
+
+<h1>Technologies</h1>
+
+![React](https://ziadoua.github.io/m3-Markdown-Badges/badges/React/react2.svg)
+![TypeScript](https://ziadoua.github.io/m3-Markdown-Badges/badges/TypeScript/typescript1.svg)
+![Redux](https://ziadoua.github.io/m3-Markdown-Badges/badges/Redux/redux1.svg)
+![RTK Query](https://svgshare.com/i/16y5.svg)
+![TailwindCSS](https://ziadoua.github.io/m3-Markdown-Badges/badges/TailwindCSS/tailwindcss2.svg)
+![ReactRouter](https://svgshare.com/i/16mg.svg)
+![ViteJS](https://ziadoua.github.io/m3-Markdown-Badges/badges/ViteJS/vitejs1.svg)
+![Frame 5](https://github.com/user-attachments/assets/08da467d-4533-4ba7-94d3-c0ec24ab8ce5)
+![Frame 3](https://github.com/user-attachments/assets/de9b79c6-4c7c-4485-9690-37c96eac5ae7)
+![Frame 4](https://github.com/user-attachments/assets/4fcf22c7-5e32-40b5-bdcc-0a09571236ea)
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
