@@ -37,29 +37,36 @@ const Dialog = () => {
   };
 
   return (
-    <AlertDialog>
-      <AlertDialogTrigger className="w-full">
-        <Button className="rounded-full mt-10" variant="outline" size="default">
-          <TrashIcon className="h-5 w-5 mr-1" /> <span>{t("Clear all tasks")}</span>
-        </Button>
-      </AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>{t("Clear all tasks")}?</AlertDialogTitle>
-          <AlertDialogDescription>
-            {t(
-              "Are you sure you want to delete all the notes? This action is irreversible, and all your notes will be deleted forever."
-            )}
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>{t("Cancel")}</AlertDialogCancel>
-          <AlertDialogAction onClick={handleDeleteAll}>
-            {t("Confirm")}
-          </AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
+    <div className="text-center">
+      <AlertDialog>
+        <AlertDialogTrigger className="">
+          <Button
+            className="rounded-full mt-10"
+            variant="outline"
+            size="default"
+          >
+            <TrashIcon className="h-5 w-5 mr-1" />
+            <span>{t("Clear all tasks")}</span>
+          </Button>
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>{t("Clear all tasks")}?</AlertDialogTitle>
+            <AlertDialogDescription>
+              {t(
+                "Are you sure you want to delete all the notes? This action is irreversible, and all your notes will be deleted forever."
+              )}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>{t("Cancel")}</AlertDialogCancel>
+            <AlertDialogAction onClick={handleDeleteAll}>
+              {t("Confirm")}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </div>
   );
 };
 

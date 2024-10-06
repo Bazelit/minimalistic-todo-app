@@ -30,8 +30,12 @@ const Settings = () => {
               <SelectValue placeholder={t("LanguagePlaceholder")} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="ru">{t("Russian")}</SelectItem>
-              <SelectItem value="en">{t("English")}</SelectItem>
+              <SelectItem className="cursor-pointer" value="ru">
+                {t("Russian")}
+              </SelectItem>
+              <SelectItem className="cursor-pointer" value="en">
+                {t("English")}
+              </SelectItem>
             </SelectContent>
           </Select>
         </div>

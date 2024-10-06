@@ -1,21 +1,15 @@
-import Loading from "@/components/Loading";
-import { Todo } from "@/types/todoType";
-import { Checkbox } from "@/components/ui/checkbox";
-import {
-  useDeleteTodoMutation,
-  useGetTodosQuery,
-  useUpdateTodoMutation,
-} from "@/redux/todosApi";
-import Dialog from "./Dialog";
-import { Button } from "./ui/button";
-import { Cross2Icon } from "@radix-ui/react-icons";
+import { TypeTodo } from "@/types/todoType";
 import { useTranslation } from "react-i18next";
+import { useGetTodosQuery, useUpdateTodoMutation } from "@/redux/todosApi";
+
+import Todo from "./Todo";
+import Loading from "@/components/Loading";
+import DeleteDialog from "./DeleteDialog";
 import TodoProgress from "./TodoProgress";
 
 const Todos = () => {
   const { t } = useTranslation();
   const { data, error, isLoading } = useGetTodosQuery();
-  const [deleteTodo] = useDeleteTodoMutation();
   const [updateTodo] = useUpdateTodoMutation();
 
   const totalTodos = data?.length || 0;
@@ -23,7 +17,7 @@ const Todos = () => {
   const progressValue =
     totalTodos > 0 ? (completedTodos / totalTodos) * 100 : 0;
 
-  const handleCheckboxChange = async (todo: Todo) => {
+  const handleCheckboxChange = async (todo: TypeTodo) => {
     try {
       await updateTodo({ ...todo, completed: !todo.completed });
     } catch (error) {
@@ -57,31 +51,10 @@ const Todos = () => {
           />
           <div className="mainTodos">
             <div className="w-[100%]">
-              {data?.map((todo: Todo) => (
-                <div
-                  key={todo.id}
-                  className="todo flex items-center justify-between"
-                >
-                  <div onClick={() => handleCheckboxChange(todo)}>
-                    <Checkbox
-                      className={`checkbox ${todo.completed && "active"}`}
-                      checked={todo.completed}
-                    />
-                    <span>{todo.name}</span>
-                  </div>
-                  <Button
-                    className="rounded-full border-none"
-                    variant={"outline"}
-                    size={"icon"}
-                    onClick={() => deleteTodo(todo.id)}
-                  >
-                    <Cross2Icon className="h-5 w-5" />
-                  </Button>
-                </div>
-              ))}
+              <Todo data={data} handleCheckboxChange={handleCheckboxChange} />
             </div>
           </div>
-          <Dialog />
+          <DeleteDialog />
         </>
       )}
     </div>

@@ -8,18 +8,18 @@ const NavBar = () => {
   const { t } = useTranslation();
 
   return (
-    <footer className="footer bg-background">
+    <footer className="footer bg-background border-t">
       <div className="link">
         <NavLink to="/" className="navLink">
           <Icon path={mdiPen} size={1} />
         </NavLink>
-        <span>{t('Todos')}</span>
+        <span>{t("Todos")}</span>
       </div>
       <div className="link">
         <NavLink to="settings" className="navLink">
           <Icon path={mdiCog} size={1} />
         </NavLink>
-        <span>{t('Settings')}</span>
+        <span>{t("Settings")}</span>
       </div>
     </footer>
   );
