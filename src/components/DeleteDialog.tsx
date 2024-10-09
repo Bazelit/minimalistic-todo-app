@@ -54,7 +54,7 @@ const Dialog = () => {
             <AlertDialogTitle>{t("Clear all tasks")}?</AlertDialogTitle>
             <AlertDialogDescription>
               {t(
-                "Are you sure you want to delete all the notes? This action is irreversible, and all your notes will be deleted forever."
+                "Are you sure you want to delete all the tasks? This action is irreversible, and all your tasks will be deleted forever."
               )}
             </AlertDialogDescription>
           </AlertDialogHeader>
