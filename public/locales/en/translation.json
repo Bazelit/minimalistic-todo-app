@@ -16,15 +16,18 @@
   "Do you want to add a task?": "Do you want to add a task?",
   "Add": "Add",
   "Cancel": "Cancel",
-  "The note cannot be empty!": "The note cannot be empty!",
+  "The task cannot be empty!": "The task cannot be empty!",
   "The tasks have been cleared": "The tasks have been cleared",
   "Error deleting tasks:": "Error deleting tasks:",
   "Clear all tasks": "Clear all tasks",
-  "Are you sure you want to delete all the notes? This action is irreversible, and all your notes will be deleted forever.": "Are you sure you want to delete all the notes? This action is irreversible, and all your notes will be deleted forever.",
+  "Are you sure you want to delete all the tasks? This action is irreversible, and all your tasks will be deleted forever.": "Are you sure you want to delete all the tasks? This action is irreversible, and all your tasks will be deleted forever.",
   "Confirm": "Confirm",
   "Error when receiving tasks": "Error when receiving tasks",
   "Progress": "Progress",
   "LanguagePlaceholder": "English",
-  "You don't have any notes": "You don't have any notes",
-  "Click on the '+' to add": "Click on the '+' to add"
+  "You don't have any notes": "You don't have any tasks",
+  "Click on the '+' to add": "Click on the '+' to add",
+  "Change the task": "Change the task",
+  "Edit task": "Edit task",
+  "Delete task": "Delete task"
 }

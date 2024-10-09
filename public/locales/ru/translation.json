@@ -16,15 +16,18 @@
   "Do you want to add a task?": "Вы хотите добавить задачу?",
   "Add": "Добавить",
   "Cancel": "Отмена",
-  "The note cannot be empty!": "Заметка не может быть пустой!",
+  "The task cannot be empty!": "Задача не может быть пустой!",
   "The tasks have been cleared": "Задачи очищены",
   "Error deleting tasks:": "Ошибка при удалении задач:",
   "Clear all tasks": "Очистить все задачи",
-  "Are you sure you want to delete all the notes? This action is irreversible, and all your notes will be deleted forever.": "Вы уверены, что хотите удалить все заметки? Это действие необратимо, и все ваши заметки будут удалены навсегда.",
+  "Are you sure you want to delete all the tasks? This action is irreversible, and all your tasks will be deleted forever.": "Вы уверены, что хотите удалить все заметки? Это действие необратимо, и все ваши заметки будут удалены навсегда.",
   "Confirm": "Подтвердить",
   "Error when receiving tasks": "Ошибка при получении задач",
   "Progress": "Прогресс",
   "LanguagePlaceholder": "Русский",
-  "You don't have any notes": "У вас нет заметок",
-  "Click on the '+' to add": "Нажмите на '+', чтобы добавить"
+  "You don't have any notes": "У вас нет задач",
+  "Click on the '+' to add": "Нажмите на '+', чтобы добавить",
+  "Change the task": "Изменить задачу",
+  "Edit task": "Изменить задачу",
+  "Delete task": "Удалить задачу"
 }

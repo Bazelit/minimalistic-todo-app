@@ -4,21 +4,48 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { FC, useState } from "react";
 import { Button } from "./ui/button";
 import { TypeTodo } from "@/types/todoType";
 import { DotsVerticalIcon } from "@radix-ui/react-icons";
-import { useDeleteTodoMutation } from "@/redux/todosApi";
+import { useDeleteTodoMutation, useUpdateTodoMutation } from "@/redux/todosApi";
 import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
 import { Input } from "./ui/input";
+
+import { useTranslation } from "react-i18next";
 
 interface ITodoDropdownMenu {
   todo: TypeTodo;
 }
 
 const TodoDropdownMenu: FC<ITodoDropdownMenu> = ({ todo }) => {
+  const { t } = useTranslation();
+  const [updateTodo] = useUpdateTodoMutation();
+  const [newName, setNewName] = useState(todo.name);
   const [deleteTodo] = useDeleteTodoMutation();
   const [modal, setModal] = useState(false);
+
+  const handleEditTodo = async () => {
+    try {
+      await updateTodo({ ...todo, name: newName });
+    } catch (error) {
+      console.error(t("Error when receiving tasks"), error);
+    }
+  };
+
+  const handleEditClick = () => {
+    setModal(true);
+  };
 
   return (
     <>
@@ -34,26 +61,39 @@ const TodoDropdownMenu: FC<ITodoDropdownMenu> = ({ todo }) => {
         </DropdownMenuTrigger>
         <DropdownMenuContent className="mr-3">
           <DropdownMenuItem
-            onClick={() => setModal(!modal)}
             className="cursor-pointer"
+            onClick={handleEditClick}
           >
-            <Pencil1Icon className="h-5 w-5 mr-2" /> Edit task
+            <Pencil1Icon className="h-5 w-5 mr-2" /> {t("Edit task")}
           </DropdownMenuItem>
           <DropdownMenuItem
             className="cursor-pointer"
             onClick={() => deleteTodo(todo.id)}
           >
-            <TrashIcon className="h-5 w-5 mr-2" /> Delete task
+            <TrashIcon className="h-5 w-5 mr-2" /> {t("Delete task")}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
 
-      {modal ? (
-        <div>
-          <h2>Изменить заметку</h2>
-          <Input value={todo.name} />
-        </div>
-      ) : null}
+      <AlertDialog open={modal} onOpenChange={setModal}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>{t("Change the task")}</AlertDialogTitle>
+            <AlertDialogDescription>
+              <Input
+                value={newName}
+                onChange={(e) => setNewName(e.target.value)}
+              />
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>{t("Cancel")}</AlertDialogCancel>
+            <AlertDialogAction onClick={handleEditTodo}>
+              {t("Confirm")}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   );
 };

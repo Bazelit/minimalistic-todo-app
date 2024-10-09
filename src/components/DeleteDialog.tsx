@@ -9,11 +9,11 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { TrashIcon } from "@radix-ui/react-icons";
 import { useDeleteTodoMutation, useGetTodosQuery } from "@/redux/todosApi";
-import { useToast } from "@/hooks/use-toast";
-import { useTranslation } from "react-i18next";
 
 const Dialog = () => {
   const { t } = useTranslation();
@@ -39,7 +39,7 @@ const Dialog = () => {
   return (
     <div className="text-center">
       <AlertDialog>
-        <AlertDialogTrigger className="">
+        <AlertDialogTrigger>
           <Button
             className="rounded-full mt-10"
             variant="outline"
