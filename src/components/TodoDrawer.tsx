@@ -30,7 +30,7 @@ const TodoDrawer = () => {
     } else {
       return toast({
         variant: "destructive",
-        description: `${t("The note cannot be empty!")}`,
+        description: `${t("The task cannot be empty!")}`,
       });
     }
   };
