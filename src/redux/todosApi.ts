@@ -1,5 +1,5 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { TypeTodo } from "@/types/todoType";
+import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
+import {TypeTodo} from "@/types/todoType";
 
 type TodosResponse = TypeTodo[];
 
@@ -15,10 +15,10 @@ export const todosApi = createApi({
       providesTags: (result) =>
         result
           ? [
-              ...result.map(({ id }) => ({ type: "Todos" as const, id })),
-              { type: "Todos", id: "LIST" },
-            ]
-          : [{ type: "Todos", id: "LIST" }],
+            ...result.map(({id}) => ({type: "Todos" as const, id})),
+            {type: "Todos", id: "LIST"},
+          ]
+          : [{type: "Todos", id: "LIST"}],
     }),
     addTodo: build.mutation({
       query: (body) => ({
@@ -26,22 +26,22 @@ export const todosApi = createApi({
         method: "POST",
         body,
       }),
-      invalidatesTags: [{ type: "Todos", id: "LIST" }],
+      invalidatesTags: [{type: "Todos", id: "LIST"}],
     }),
     updateTodo: build.mutation({
-      query: ({ id, ...updatedData }) => ({
+      query: ({id, ...updatedData}) => ({
         url: `todos/${id}`,
         method: "PUT",
         body: updatedData,
       }),
-      invalidatesTags: [{ type: "Todos", id: "LIST" }],
+      invalidatesTags: [{type: "Todos", id: "LIST"}],
     }),
     deleteTodo: build.mutation({
       query: (id) => ({
         url: `todos/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: [{ type: "Todos", id: "LIST" }],
+      invalidatesTags: [{type: "Todos", id: "LIST"}],
     }),
   }),
 });
