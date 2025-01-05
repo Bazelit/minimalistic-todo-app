@@ -5,6 +5,7 @@ import Home from "@/pages/Home";
 import NavBar from "@/components/NavBar";
 import Settings from "@/pages/Settings";
 import PageTransition from "./pages/PageTransition";
+import TodoDrawer from "@/components/TodoDrawer";
 
 const App = () => {
   const location = useLocation();
@@ -16,9 +17,12 @@ const App = () => {
           <Route
             path="/"
             element={
-              <PageTransition>
-                <Home />
-              </PageTransition>
+              <>
+                <PageTransition>
+                  <Home />
+                </PageTransition>
+                <TodoDrawer />
+              </>
             }
           />
           <Route
