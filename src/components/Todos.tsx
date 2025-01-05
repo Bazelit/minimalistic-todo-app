@@ -49,6 +49,7 @@ const Todos = () => {
             totalTodos={totalTodos}
             completedTodos={completedTodos}
           />
+
           <div className="mainTodos">
             <div className="w-[100%]">
               <Todo data={data} handleCheckboxChange={handleCheckboxChange} />

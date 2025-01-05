@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { TypeTodo } from "@/types/todoType";
 import { Checkbox } from "@/components/ui/checkbox";
+import { AnimatePresence, motion } from "framer-motion";
 import TodoDropdownMenu from "./TodoDropdownMenu";
 
 interface ITodoProps {
@@ -9,20 +10,39 @@ interface ITodoProps {
 }
 
 const Todo: FC<ITodoProps> = ({ data, handleCheckboxChange }) => {
+  const taskVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: { opacity: 1, scale: 1 },
+    exit: { opacity: 0, scale: 0.5, y: -50, filter: "blur(5px)" },
+  };
+
   return (
     <>
-      {data?.map((todo: TypeTodo) => (
-        <div key={todo.id} className="todo flex items-center justify-between">
-          <div onClick={() => handleCheckboxChange(todo)}>
-            <Checkbox
-              className={`checkbox ${todo.completed && "active"}`}
-              checked={todo.completed}
-            />
-            <span className="cursor-pointer">{todo.name}</span>
-          </div>
-          <TodoDropdownMenu todo={todo} />
-        </div>
-      ))}
+      <AnimatePresence>
+        <motion.div
+          variants={taskVariants}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          transition={{ duration: 0.3 }}
+        >
+          {data?.map((todo: TypeTodo) => (
+            <div
+              key={todo.id}
+              className="todo flex items-center justify-between"
+            >
+              <div onClick={() => handleCheckboxChange(todo)}>
+                <Checkbox
+                  className={`checkbox ${todo.completed && "active"}`}
+                  checked={todo.completed}
+                />
+                <span className="cursor-pointer">{todo.name}</span>
+              </div>
+              <TodoDropdownMenu todo={todo} />
+            </div>
+          ))}
+        </motion.div>
+      </AnimatePresence>
     </>
   );
 };
