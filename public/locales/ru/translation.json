@@ -36,10 +36,11 @@
   "Password": "Пароль",
   "Confirm password": "Потдвердите пароль",
   "Sign Up": "Зарегистрироваться",
-  "Sign Up with": "Зарегистрироваться с помощью",
+  "Sign Up with": "Войти с помощью",
   "Already have an account?": "Уже есть аккаунт?",
   "Login": "Войти",
   "Enter your email below to login to your account": "Введите свою почту, чтобы войти в аккаунт",
   "Forgot your password?": "Забыли пароль?",
-  "Don&apos;t have an account?": "У вас нет аккаунта?"
+  "Don&apos;t have an account?": "У вас нет аккаунта?",
+  "Login with": "Войти с помощью"
 }

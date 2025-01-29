@@ -10,8 +10,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
-export function LoginForm({
+export function SignUpForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
@@ -21,10 +22,8 @@ export function LoginForm({
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl">{t("Login")}</CardTitle>
-          <CardDescription>
-            {t("Enter your email below to login to your account")}
-          </CardDescription>
+          <CardTitle className="text-2xl">{t("Sign Up")}</CardTitle>
+          <CardDescription>{t("Enter your email below to sign up")}</CardDescription>
         </CardHeader>
         <CardContent>
           <form>
@@ -34,34 +33,34 @@ export function LoginForm({
                 <Input
                   id="email"
                   type="email"
-                  placeholder="m@example.com"
+                  placeholder={t("Enter your email")}
                   required
                 />
               </div>
               <div className="grid gap-2">
                 <div className="flex items-center">
                   <Label htmlFor="password">{t("Password")}</Label>
-                  <a
-                    href="#"
-                    className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                  >
-                   {t("Forgot your password?")}
-                  </a>
                 </div>
                 <Input id="password" type="password" required />
               </div>
-              <Button type="submit" className="w-full">
-                {t("Login")}
+              <div className="grid gap-2">
+                <div className="flex items-center">
+                  <Label htmlFor="password">{t("Confirm password")}</Label>
+                </div>
+                <Input id="password" type="password" required />
+              </div>
+              <Button type="submit" className="btn w-full">
+                {t("Sign Up")}
               </Button>
-              <Button variant="outline" className="w-full">
-                Login with Google
+              <Button variant="outline" className="btn w-full">
+                {t("Sign Up with")} Google
               </Button>
             </div>
             <div className="mt-4 text-center text-sm">
-              {t("Don&apos;t have an account?")}{" "}
-              <a href="signup" className="underline underline-offset-4">
-                {t("Sign Up")}
-              </a>
+              {t("Already have an account?")}{" "}
+              <Link to="/login" className="underline underline-offset-4">
+                {t('Login')}
+              </Link>
             </div>
           </form>
         </CardContent>
