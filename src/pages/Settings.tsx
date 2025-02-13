@@ -23,9 +23,6 @@ const Settings = () => {
         <div className="flex justify-between items-center font-light p-5">
           <GithubLink />
         </div>
-        <div className="flex  justify-between items-center font-light p-5">
-          <ThemeCustomizer />
-        </div>
       </div>
     </div>
   );
