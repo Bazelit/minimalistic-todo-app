@@ -37,11 +37,11 @@ const Dialog = () => {
   };
 
   return (
-    <div className="text-center">
+    <div className="text-center mt-10">
       <AlertDialog>
         <AlertDialogTrigger>
           <Button
-            className="rounded-full mt-10 btn"
+            className="rounded-full btn"
             variant="outline"
             size="default"
           >
