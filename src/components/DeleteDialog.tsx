@@ -41,7 +41,7 @@ const Dialog = () => {
       <AlertDialog>
         <AlertDialogTrigger>
           <Button
-            className="rounded-full mt-10"
+            className="rounded-full mt-10 btn"
             variant="outline"
             size="default"
           >

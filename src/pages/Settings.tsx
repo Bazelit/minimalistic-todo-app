@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/select";
 import { ModeToggle } from "@/components/mode-toggle";
 import { useTranslation } from "react-i18next";
+import ThemeCustomizer from "@/components/ThemeCustomizer";
 
 const Settings = () => {
   const { t, i18n } = useTranslation();
@@ -38,6 +39,9 @@ const Settings = () => {
               </SelectItem>
             </SelectContent>
           </Select>
+        </div>
+        <div className="flex  justify-between items-center font-light p-5">
+          <ThemeCustomizer />
         </div>
       </div>
     </div>
