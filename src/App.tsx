@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Home from "@/pages/Home";
@@ -8,9 +8,18 @@ import PageTransition from "./pages/PageTransition";
 import TodoDrawer from "@/components/TodoDrawer";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { RootState } from "./redux/store";
 
 const App = () => {
   const location = useLocation();
+  const themeValue = useSelector((state: RootState) => state.theme.themeValue);
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") || "default";
+    document.documentElement.setAttribute("data-theme", savedTheme);
+  }, [themeValue]);
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">

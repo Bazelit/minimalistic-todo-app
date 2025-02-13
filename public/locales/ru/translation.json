@@ -42,5 +42,11 @@
   "Enter your email below to login to your account": "Введите свою почту, чтобы войти в аккаунт",
   "Forgot your password?": "Забыли пароль?",
   "Don&apos;t have an account?": "У вас нет аккаунта?",
-  "Login with": "Войти с помощью"
+  "Login with": "Войти с помощью",
+  "Default": "По умолчанию",
+  "Yellow": "Жёлтый",
+  "Purple": "Фиолетовый",
+  "Blue": "Синий",
+  "Slate": "Сланец",
+  "Color scheme": "Цветовая схема"
 }
