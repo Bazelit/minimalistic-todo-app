@@ -37,8 +37,9 @@ const Todo: FC<ITodoProps> = ({ data, handleCheckboxChange }) => {
                   checked={todo.completed}
                 />
                 <span className="cursor-pointer">{todo.name}</span>
-                <p className="text-sm text-gray-400">{new Date(todo.date).toLocaleString("ru")}</p>
-                {/* {console.log(new Date(todo.date))} */}
+                <p className="text-sm text-gray-400">
+                  {new Date(todo.date).toDateString()}
+                </p>
               </div>
               <TodoDropdownMenu todo={todo} />
             </div>

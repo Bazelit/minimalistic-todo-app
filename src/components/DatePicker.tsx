@@ -55,7 +55,7 @@ export function DatePickerDemo() {
         <Calendar
           mode="single"
           selected={todoDateValue}
-          onSelect={(todoDateValue) =>
+          onDayClick={(todoDateValue) =>
             dispatch(setTodoDateValie(todoDateValue))
           }
           initialFocus
