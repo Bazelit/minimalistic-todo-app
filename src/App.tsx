@@ -13,15 +13,6 @@ import { useEffect } from "react";
 import { RootState } from "./redux/store";
 
 const App = () => {
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-      navigator.serviceWorker
-        .register("/service-worker.js")
-        .then((registration) => console.log("SW registered:", registration))
-        .catch((err) => console.log("SW registration failed:", err));
-    });
-  }
-
   const location = useLocation();
   const themeValue = useSelector((state: RootState) => state.theme.themeValue);
 
