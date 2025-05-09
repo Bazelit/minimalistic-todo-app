@@ -23,6 +23,7 @@ import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
 import { Input } from "./ui/input";
 
 import { useTranslation } from "react-i18next";
+import { DatePickerDemo } from "./DatePicker";
 
 interface ITodoDropdownMenu {
   todo: TypeTodo;
@@ -79,11 +80,13 @@ const TodoDropdownMenu: FC<ITodoDropdownMenu> = ({ todo }) => {
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>{t("Change the task")}</AlertDialogTitle>
-            <AlertDialogDescription>
+            <AlertDialogDescription className="flex">
               <Input
                 value={newName}
+                className="mr-2"
                 onChange={(e) => setNewName(e.target.value)}
               />
+              <DatePickerDemo />
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
