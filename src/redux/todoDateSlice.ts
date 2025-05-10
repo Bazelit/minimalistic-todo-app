@@ -1,14 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
-  todoDateValue: "",
+interface TodoDateState {
+  todoDateValue: Date | null;
+}
+
+const initialState: TodoDateState = {
+  todoDateValue: null,
 };
 
 const todoDateSlice = createSlice({
   name: "todoDate",
   initialState,
   reducers: {
-    setTodoDateValue(state, action) {
+    setTodoDateValue(state, action: PayloadAction<Date | null>) {
       state.todoDateValue = action.payload;
     },
   },
