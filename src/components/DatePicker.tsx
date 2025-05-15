@@ -49,7 +49,7 @@ export function DatePickerDemo() {
       <PopoverContent className="w-auto p-0">
         <Calendar
           mode="single"
-          selected={todoDateValue}
+          selected={todoDateValue ?? undefined}
           onDayClick={(todoDateValue) =>
             dispatch(setTodoDateValue(todoDateValue))
           }

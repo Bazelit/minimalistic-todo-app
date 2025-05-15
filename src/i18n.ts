@@ -4,17 +4,17 @@ import HttpApi from "i18next-http-backend";
 import LanguageDetector from "i18next-browser-languagedetector";
 
 i18n
-  .use(HttpApi) // Подключение плагина для загрузки переводов
-  .use(LanguageDetector) // Определение языка браузера
-  .use(initReactI18next) // Интеграция с React
+  .use(HttpApi)
+  .use(LanguageDetector)
+  .use(initReactI18next)
   .init({
-    fallbackLng: "en", // Язык по умолчанию
-    debug: true, // Включение режима отладки
+    fallbackLng: "en",
+    debug: true,
     interpolation: {
-      escapeValue: false, // Отключение экранирования HTML (необходимо для React)
+      escapeValue: false,
     },
     backend: {
-      loadPath: "/locales/{{lng}}/{{ns}}.json", // Путь к файлам переводов
+      loadPath: "/locales/{{lng}}/{{ns}}.json",
     },
   });
 

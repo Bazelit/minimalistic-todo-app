@@ -1,18 +1,18 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface TodoDateState {
-  todoDateValue: Date | null;
+  todoDateValue: Date | undefined;
 }
 
 const initialState: TodoDateState = {
-  todoDateValue: null,
+  todoDateValue: undefined,
 };
 
 const todoDateSlice = createSlice({
   name: "todoDate",
   initialState,
   reducers: {
-    setTodoDateValue(state, action: PayloadAction<Date | null>) {
+    setTodoDateValue(state, action: PayloadAction<Date | undefined>) {
       state.todoDateValue = action.payload;
     },
   },
