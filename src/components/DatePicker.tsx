@@ -9,8 +9,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { useSelector, useDispatch } from "react-redux";
-import { setTodoDateValue } from "@/redux/todoDateSlice";
+import { useSelector } from "react-redux";
 import {
   Tooltip,
   TooltipContent,
@@ -18,11 +17,15 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-export function DatePickerDemo() {
+interface DatePickerProps {
+  date?: Date;
+  onDateChange: (date?: Date) => void;
+}
+
+export function DatePickerDemo({date, onDateChange}: DatePickerProps) {
   const todoDateValue = useSelector(
     (state: RootState) => state.todoDate.todoDateValue
   );
-  const dispatch = useDispatch();
 
   return (
     <Popover>
@@ -37,22 +40,20 @@ export function DatePickerDemo() {
                   !todoDateValue && "text-muted-foreground"
                 )}
               >
-                <CalendarIcon />
+                <CalendarIcon/>
               </Button>
             </TooltipTrigger>
           </PopoverTrigger>
           <TooltipContent>
-            {todoDateValue ? format(todoDateValue, "PPP") : "Select a date"}
+            {date ? format(date, "PPP") : "Select a date"}
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
       <PopoverContent className="w-auto p-0">
         <Calendar
           mode="single"
-          selected={todoDateValue ?? undefined}
-          onDayClick={(todoDateValue) =>
-            dispatch(setTodoDateValue(todoDateValue))
-          }
+          selected={date ?? undefined}
+          onSelect={onDateChange}
           initialFocus
         />
       </PopoverContent>

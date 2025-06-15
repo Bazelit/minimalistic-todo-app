@@ -37,9 +37,12 @@ const Todo: FC<ITodoProps> = ({ data, handleCheckboxChange }) => {
                   checked={todo.completed}
                 />
                 <span className="cursor-pointer">{todo.name}</span>
-                <p className="text-sm text-gray-400">
-                  {new Date(todo.date).toDateString()}
-                </p>
+                {new Date(todo.date).toDateString() ===
+                "Invalid Date" ? null : (
+                  <p className="text-sm text-gray-400">
+                    {new Date(todo.date).toDateString()}
+                  </p>
+                )}
               </div>
               <TodoDropdownMenu todo={todo} />
             </div>
@@ -49,5 +52,4 @@ const Todo: FC<ITodoProps> = ({ data, handleCheckboxChange }) => {
     </>
   );
 };
-
 export default Todo;

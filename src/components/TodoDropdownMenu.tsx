@@ -29,16 +29,17 @@ interface ITodoDropdownMenu {
   todo: TypeTodo;
 }
 
-const TodoDropdownMenu: FC<ITodoDropdownMenu> = ({ todo }) => {
-  const { t } = useTranslation();
+const TodoDropdownMenu: FC<ITodoDropdownMenu> = ({todo}) => {
+  const {t} = useTranslation();
   const [updateTodo] = useUpdateTodoMutation();
   const [newName, setNewName] = useState(todo.name);
+  const [newDate, setNewDate] = useState<Date | undefined>(todo.date ? new Date(todo.date) : undefined);
   const [deleteTodo] = useDeleteTodoMutation();
   const [modal, setModal] = useState(false);
 
   const handleEditTodo = async () => {
     try {
-      await updateTodo({ ...todo, name: newName });
+      await updateTodo({...todo, name: newName, date: newDate});
     } catch (error) {
       console.error(t("Error when receiving tasks"), error);
     }
@@ -47,6 +48,10 @@ const TodoDropdownMenu: FC<ITodoDropdownMenu> = ({ todo }) => {
   const handleEditClick = () => {
     setModal(true);
   };
+
+  const handleDateChange = (date?: Date) => {
+    setNewDate(date)
+  }
 
   return (
     <>
@@ -57,7 +62,7 @@ const TodoDropdownMenu: FC<ITodoDropdownMenu> = ({ todo }) => {
             variant={"outline"}
             size={"icon"}
           >
-            <DotsVerticalIcon className="h-5 w-5" />
+            <DotsVerticalIcon className="h-5 w-5"/>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="mr-3">
@@ -65,13 +70,13 @@ const TodoDropdownMenu: FC<ITodoDropdownMenu> = ({ todo }) => {
             className="cursor-pointer"
             onClick={handleEditClick}
           >
-            <Pencil1Icon className="h-5 w-5 mr-2" /> {t("Edit task")}
+            <Pencil1Icon className="h-5 w-5 mr-2"/> {t("Edit task")}
           </DropdownMenuItem>
           <DropdownMenuItem
             className="cursor-pointer"
             onClick={() => deleteTodo(todo.id)}
           >
-            <TrashIcon className="h-5 w-5 mr-2" /> {t("Delete task")}
+            <TrashIcon className="h-5 w-5 mr-2"/> {t("Delete task")}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -86,7 +91,7 @@ const TodoDropdownMenu: FC<ITodoDropdownMenu> = ({ todo }) => {
                 className="mr-2"
                 onChange={(e) => setNewName(e.target.value)}
               />
-              <DatePickerDemo />
+              <DatePickerDemo date={newDate} onDateChange={handleDateChange}/>
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
