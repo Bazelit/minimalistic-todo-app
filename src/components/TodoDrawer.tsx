@@ -17,24 +17,20 @@ import { useToast } from "@/hooks/use-toast";
 import { useAddTodoMutation } from "@/redux/todosApi";
 import { useTranslation } from "react-i18next";
 import { DatePickerDemo } from "./DatePicker";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
 
 const TodoDrawer = () => {
   const [addTodo] = useAddTodoMutation();
   const [todoTitle, setTodoTitle] = useState("");
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>();
   const { t } = useTranslation();
   const { toast } = useToast();
-  const todoDateValue = useSelector(
-    (state: RootState) => state.todoDate.todoDateValue
-  );
 
   const handleAddTodo = async () => {
     if (todoTitle) {
       await addTodo({
         name: todoTitle,
         completed: false,
-        date: todoDateValue,
+        date: selectedDate,
       }).unwrap();
       setTodoTitle("");
     } else {
@@ -61,7 +57,10 @@ const TodoDrawer = () => {
               className="mr-2"
               onChange={(e) => setTodoTitle(e.target.value)}
             />
-            <DatePickerDemo />
+            <DatePickerDemo
+              date={selectedDate}
+              onDateChange={setSelectedDate}
+            />
           </DrawerDescription>
         </DrawerHeader>
         <DrawerFooter>
